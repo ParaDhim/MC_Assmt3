@@ -106,9 +106,6 @@ target_link_libraries(
 - Performance optimizations for large matrices 🚀
 - Dark/light theme support 🌓
 
-## License 📄
-[Insert your license here]
-
 ## Acknowledgements 🙏
 - Eigen library for matrix operations
 - Jetpack Compose for modern Android UI
