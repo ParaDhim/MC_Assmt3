@@ -1,147 +1,114 @@
-# Wi-Fi Signal Mapper 📶
+# Matrix Calculator Android App 🧮
 
-<div align="center">
+## Overview ✨
+Matrix Calculator is an Android application built using Jetpack Compose and JNI (Java Native Interface) that allows users to perform common matrix operations. The app leverages C++ and the Eigen library for efficient matrix computations while providing a modern, intuitive user interface.
 
-![Wi-Fi Signal Mapper Banner](https://github.com/user-attachments/assets/bceb2ac1-b268-4662-bcd0-7800c0a3b6b1)
+## Features 🚀
+- ➕ Matrix addition
+- ➖ Matrix subtraction
+- ✖️ Matrix multiplication
+- ➗ Matrix division
+- 🔄 Dynamic matrix size adjustment
+- ✅ Real-time input validation
+- ⚠️ Error handling with descriptive messages
+- 🎨 Clean, modern UI built with Jetpack Compose
+- ⚡ Efficient calculations using native C++ code
 
-<p float="left">
-  <img width="350" alt="Signal Strength Matrix" src="https://github.com/user-attachments/assets/2697ee60-e2c8-48ba-beba-2d76b8510db5" />
-  <img width="338" alt="Location Comparison View" src="https://github.com/user-attachments/assets/519c3b04-0659-4f98-90a0-54b58f3ce6f2" />
-</p>
+## Screenshots 📱
 
-_A modern Android application for mapping and visualizing Wi-Fi signal strengths across different locations_
+### Main Interface
+<img width="354" alt="Screenshot 2025-04-24 at 10 37 54 AM" src="https://github.com/user-attachments/assets/c73927d0-5e34-4945-9ddc-7fb893bd2279" />
 
-[Features](#features) • [Screenshots](#screenshots) • [Installation](#installation) • [Usage](#usage) • [Architecture](#architecture) • [License](#license)
+### Calculation Results
+<img width="326" alt="Screenshot 2025-04-24 at 10 38 12 AM" src="https://github.com/user-attachments/assets/bbff870e-a050-4ccb-a1cd-5ffb5e9f6b31" />
 
-</div>
 
-## ✨ Features
+## Technical Stack 🛠️
+- **UI Framework**: Jetpack Compose 🖌️
+- **Native Code**: C++ with JNI 🔌
+- **Matrix Library**: Eigen (C++) 📊
+- **Build System**: Gradle with CMake for native code 🏗️
 
-- **📊 Real-time Signal Visualization** - Scan and visualize current Wi-Fi signals using color-coded matrices
-- **🗺️ Location Management** - Save scans with custom names for different areas in your space
-- **🔄 Comparative Analysis** - Toggle between individual and comparison views to analyze signal patterns
-- **📱 Modern UI** - Built with Material Design 3 and Jetpack Compose for a fluid experience
-- **📶 Access Point Detection** - Identify and display available networks in each location
-- **🔒 Permission Handling** - Seamless user experience with proper permission handling
+## Project Structure 📁
 
-## 🔧 Installation
+### Android App (Kotlin) 📱
+- `MainActivity.kt`: Entry point for the app with UI components
+- `MatrixCalculator.kt`: JNI wrapper class for native operations
+
+### Native Code (C++) ⚙️
+- `native-lib.cpp`: Implementation of matrix operations using Eigen library
+- Matrix class that encapsulates Eigen's MatrixXd with operations:
+  - Addition
+  - Subtraction
+  - Multiplication
+  - Division (using matrix inverse)
+
+### CMake Configuration 🔧
+```cmake
+cmake_minimum_required(VERSION 3.10.2)
+project(matrix-calculator)
+add_library(
+        matrix-calculator
+        SHARED
+        native-lib.cpp
+)
+include_directories(${CMAKE_SOURCE_DIR}/include)
+find_library(
+        log-lib
+        log
+)
+target_link_libraries(
+        matrix-calculator
+        ${log-lib}
+)
+```
+
+## Setup Instructions 📝
 
 ### Prerequisites
+- Android Studio Arctic Fox (2020.3.1) or newer 🦊
+- CMake 3.10.2 or higher
+- Android NDK 21.0.6113669 or newer
+- Eigen library (included in the project)
 
-- Android Studio Arctic Fox or newer
-- Android SDK 31 or higher
-- Kotlin 1.7.20 or higher
+### Build & Run 🚀
+1. Clone the repository
+2. Open the project in Android Studio
+3. Sync Gradle files
+4. Build the project (this will compile both Kotlin and C++ code)
+5. Run on an emulator or physical device
 
-### Setup
+## How It Works 🔍
 
-```bash
-# Clone this repository
-git clone https://github.com/Paras82/MC_Assmt3/ques1
+### User Interface Flow
+1. Set dimensions for Matrix A and Matrix B ⚙️
+2. Enter values for each matrix 🔢
+3. Select an operation (addition, subtraction, multiplication, or division) 🔣
+4. Press "Calculate" to perform the operation ✨
+5. View the result or error message 📊
 
-# Navigate to the project directory
-cd ques1
+### Native Code Execution
+1. Matrix data is collected from UI and passed to the native layer 📤
+2. C++ code parses the matrices from string representations 🔄
+3. Eigen library performs the requested operation 🧮
+4. Result is formatted and returned to Kotlin/Java layer 📥
+5. UI displays the formatted result 📱
 
-# Open with Android Studio and sync Gradle files
-```
+## Limitations ⚠️
+- Matrix dimensions are limited by device memory
+- Division requires Matrix B to be invertible (non-singular)
+- For multiplication, Matrix A columns must equal Matrix B rows
 
-## 📱 Usage
+## Future Improvements 💡
+- Additional matrix operations (determinant, transpose, etc.)
+- Save/load matrices 💾
+- Matrix templates for common scenarios 📋
+- Performance optimizations for large matrices 🚀
+- Dark/light theme support 🌓
 
-### Scanning Wi-Fi Signals
+## License 📄
+[Insert your license here]
 
-1. Launch the app and grant the required location permissions
-2. Enter a descriptive name for your current location (e.g., "Living Room")
-3. Tap the "Scan" button to begin scanning for Wi-Fi signals
-4. The app will display a color-coded matrix representing signal strengths:
-   - **Green**: Strong signal
-   - **Yellow**: Medium signal
-   - **Red**: Weak signal
-
-### Saving Locations
-
-- After scanning, tap "Save" to store the current scan with the specified location name
-- Saved locations appear in the list below and can be selected for detailed viewing
-
-### Comparing Locations
-
-- Toggle the "Compare" switch to view a side-by-side comparison of all saved locations
-- Compare signal distribution patterns and access point information across different areas
-
-## 🏗️ Architecture
-
-### Tech Stack
-
-- **Kotlin** - Primary programming language
-- **Jetpack Compose** - Modern toolkit for building native UI
-- **Material Design 3** - Latest design system from Google
-- **StateFlow** - For reactive state management
-- **Android Wi-Fi APIs** - For accessing Wi-Fi functionality
-
-
-
-### Signal Visualization Algorithm
-
-The app uses a 10×10 matrix to represent signal strength measurements:
-
-```kotlin
-@Composable
-fun SignalMatrixVisualization(
-    signals: List<Int>,
-    modifier: Modifier = Modifier
-) {
-    val normalizedSignals = remember(signals) {
-        // Normalize signals to 0-100 range for visualization
-        val minSignal = signals.minOrNull() ?: -100
-        val maxSignal = signals.maxOrNull() ?: -30
-        val range = max(1, abs(maxSignal - minSignal))
-
-        signals.map { signal ->
-            (((signal - minSignal).toFloat() / range) * 100).coerceIn(0f, 100f)
-        }
-    }
-    
-    // Drawing logic for the matrix visualization
-}
-```
-
-## 🛠️ Performance Considerations
-
-- **Efficient Scanning**: The app minimizes battery usage by managing scan frequencies
-- **Reactive UI**: Updates are pushed to the UI only when data changes
-- **Edge-to-Edge Design**: Full support for notch/cutout areas on modern devices
-
-## 📝 Implementation Details
-
-This project demonstrates:
-
-1. **Permission Handling**: Proper implementation of runtime permissions for location access
-2. **Jetpack Compose UI**: Modern declarative UI with Material Design 3
-3. **MVVM Architecture**: Clean separation of concerns with ViewModel pattern
-4. **Hardware Integration**: Direct interaction with device Wi-Fi hardware
-5. **StateFlow**: Reactive programming approach for UI updates
-6. **Edge-to-Edge Design**: Support for modern device form factors
-
-## 📄 License
-
-```
-MIT License
-
-Copyright (c) 2025 Wi-Fi Signal Mapper Contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+## Acknowledgements 🙏
+- Eigen library for matrix operations
+- Jetpack Compose for modern Android UI
