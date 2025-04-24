@@ -39,7 +39,7 @@ _A modern Android application for mapping and visualizing Wi-Fi signal strengths
 git clone https://github.com/Paras82/MC_Assmt3/ques1
 
 # Navigate to the project directory
-cd wifi-signal-mapper
+cd ques1
 
 # Open with Android Studio and sync Gradle files
 ```
