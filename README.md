@@ -24,23 +24,6 @@ _A modern Android application for mapping and visualizing Wi-Fi signal strengths
 - **📶 Access Point Detection** - Identify and display available networks in each location
 - **🔒 Permission Handling** - Seamless user experience with proper permission handling
 
-## 📸 Screenshots
-
-<div align="center">
-<table>
-  <tr>
-    <td><img src="screenshots/home_screen.png" width="200"/></td>
-    <td><img src="screenshots/signal_map.png" width="200"/></td>
-    <td><img src="screenshots/comparison_view.png" width="200"/></td>
-  </tr>
-  <tr>
-    <td align="center"><b>Home Screen</b></td>
-    <td align="center"><b>Signal Map</b></td>
-    <td align="center"><b>Comparison View</b></td>
-  </tr>
-</table>
-</div>
-
 ## 🔧 Installation
 
 ### Prerequisites
@@ -53,7 +36,7 @@ _A modern Android application for mapping and visualizing Wi-Fi signal strengths
 
 ```bash
 # Clone this repository
-git clone https://github.com/yourusername/wifi-signal-mapper.git
+git clone https://github.com/Paras82/MC_Assmt3/ques1
 
 # Navigate to the project directory
 cd wifi-signal-mapper
